@@ -1,0 +1,17 @@
+<nav class="fixed top-0 left-0 w-full z-50 p-6 backdrop-blur-md bg-gray-900/30 text-white shadow-lg">
+  <div class="container mx-auto flex justify-between items-center">
+    <a routerLink="/" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600 transition-all duration-300 hover:scale-105">
+      Marvin
+    </a>
+
+    <div class="flex items-center space-x-6">
+      <a routerLink="/projets" routerLinkActive="text-indigo-400" class="text-gray-300 hover:text-white transition-colors duration-300">Projets</a>
+      <a routerLink="/competences" routerLinkActive="text-indigo-400" class="text-gray-300 hover:text-white transition-colors duration-300">Compétences</a>
+      <a routerLink="/about" routerLinkActive="text-indigo-400" class="text-gray-300 hover:text-white transition-colors duration-300">À propos</a>
+      <a routerLink="/contact" routerLinkActive="text-indigo-400" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
+    </div>
+    <button (click)="toggleTheme()" class="ml-4 p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300">
+    ☀️
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,16 @@
+<div class="bg-gray-900 text-white min-h-screen p-12 pt-32 flex flex-col items-center">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold">Mes Compétences</h1>
+    <p class="text-xl md:text-2xl font-light text-gray-400 mt-2">
+      Les technologies que j'utilise au quotidien.
+    </p>
+  </div>
+
+  <div class="w-full max-w-2xl bg-gray-800 p-8 rounded-xl shadow-xl">
+    <canvas *ngIf="isBrowser" baseChart
+      [options]="radarChartOptions"
+      [type]="radarChartType"
+      [data]="radarChartData">
+    </canvas>
+  </div>
+</div>
