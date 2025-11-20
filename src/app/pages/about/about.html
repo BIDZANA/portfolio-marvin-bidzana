@@ -1,19 +1,55 @@
-<div class="relative wrap overflow-hidden p-10 pt-32 h-full">
-  <div class="border-2-2 absolute border-opacity-20 border-gray-700 h-full border" style="left: 50%"></div>
+<div class="bg-gray-900 text-white min-h-screen p-12 pt-32 flex flex-col items-center">
+  
+  <div class="text-center mb-16 relative z-10">
+    <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-2">Mon Parcours</h2>
+    <h1 class="text-4xl md:text-5xl font-bold">Expériences & Formation</h1>
+    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+      Un aperçu de mon évolution professionnelle, de mes projets bénévoles et de mon cursus académique.
+    </p>
+  </div>
 
-  <div *ngFor="let event of timelineEvents; let i = index" 
-       [ngClass]="{'flex-row-reverse left-timeline': event.side === 'left', 'right-timeline': event.side === 'right'}"
-       class="mb-8 flex justify-between items-center w-full">
+  <div class="relative wrap h-full w-full max-w-5xl mx-auto">
+    
+    <div class="absolute border-opacity-20 border-gray-600 h-full border-l-2 left-4 md:left-1/2 md:-ml-1"></div>
 
-    <div class="order-1 w-5/12"></div>
-    <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-      <h1 class="mx-auto font-semibold text-lg text-white">{{ i + 1 }}</h1>
-    </div>
-    <div [ngClass]="{'text-right': event.side === 'left'}" class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 p-4">
-      <h3 class="mb-3 font-bold text-gray-200 text-xl">{{ event.title }}</h3>
-      <p class="text-sm leading-snug tracking-wide text-gray-400 text-opacity-100">
-        {{ event.description }}
-      </p>
+    <div *ngFor="let event of timelineEvents; let i = index" 
+         class="mb-8 flex flex-col md:flex-row items-center w-full justify-between"
+         [ngClass]="{'md:flex-row-reverse': event.side === 'left'}">
+      
+      <div class="hidden md:block w-5/12"></div>
+
+      <div class="z-20 flex items-center justify-center order-1 w-10 h-10 rounded-full shadow-xl mb-4 md:mb-0 border-4 border-gray-900 shrink-0"
+           [ngClass]="getIconBgColor(event.type)">
+        <span class="text-lg">{{ getIcon(event.type) }}</span>
+      </div>
+
+      <div class="order-1 bg-gray-800 rounded-xl shadow-lg w-full md:w-5/12 p-6 border border-gray-700 hover:border-indigo-500 transition-all duration-300 relative">
+        
+        <div class="absolute top-1/2 md:top-4 transform -translate-y-1/2 md:translate-y-0 w-4 h-4 bg-gray-800 rotate-45 border-l border-b border-gray-700"
+             [ngClass]="event.side === 'left' ? 'md:-right-2 md:border-l-0 md:border-t md:border-gray-700 md:border-r' : 'md:-left-2 md:border-r-0 md:border-b md:border-l'">
+        </div>
+
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs font-bold px-2 py-1 rounded bg-gray-900 text-indigo-400 border border-gray-700">
+            {{ event.date }}
+          </span>
+        </div>
+
+        <h3 class="font-bold text-xl text-white mb-1">{{ event.title }}</h3>
+        <h4 class="text-md text-indigo-300 font-medium mb-3">{{ event.company }}</h4>
+
+        <p class="text-sm text-gray-400 leading-relaxed mb-4 text-justify">
+          {{ event.description }}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span *ngFor="let tag of event.tags" 
+                class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-gray-700 text-gray-300">
+            #{{ tag }}
+          </span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
