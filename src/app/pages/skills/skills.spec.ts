@@ -20,4 +20,9 @@ describe('Skills', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have 6 categories of skills', () => {
+    expect(component.skillCategories.length).toBe(6);
+  });
 });
+ 

@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+/*import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { isPlatformBrowser } from '@angular/common';
@@ -54,4 +54,58 @@ export class Skills {
     ]
   };
   public radarChartType: 'radar' = 'radar';
+}
+*/
+
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+interface SkillCategory {
+  name: string;
+  skills: string[];
+  icon: string; // Classe pour une icône (emoji pour l'instant pour faire simple)
+}
+
+@Component({
+  selector: 'app-skills',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './skills.html',
+  styleUrl: './skills.css' // Si tu as du CSS spécifique, sinon on utilise Tailwind
+})
+export class Skills {
+  
+  // Données extraites de ton CV [cite: 1]
+  skillCategories: SkillCategory[] = [
+    {
+      name: 'Langages',
+      icon: '💻',
+      skills: ['Java', 'TypeScript', 'JavaScript', 'Python', 'C#', 'SQL', 'C++'] // [cite: 3]
+    },
+    {
+      name: 'Frameworks & Libs',
+      icon: '🛠️',
+      skills: ['Angular', 'Spring Boot', 'React', 'Flutter', 'Node.js'] // [cite: 4]
+    },
+    {
+      name: 'DevOps & Cloud',
+      icon: '☁️',
+      skills: ['Docker', 'Kubernetes', 'GitLab CI/CD', 'AWS', 'Jenkins', 'SonarQube', 'Git'] // [cite: 6]
+    },
+    {
+      name: 'Bases de Données',
+      icon: '🗄️',
+      skills: ['PostgreSQL', 'MySQL', 'NoSQL'] // [cite: 13]
+    },
+    {
+      name: 'Tests & Qualité',
+      icon: '✅',
+      skills: ['JUnit', 'Cypress', 'Selenium'] // [cite: 11]
+    },
+    {
+      name: 'Méthodologies & IA',
+      icon: '🧠',
+      skills: ['Agile Scrum', 'API REST', 'DDD', 'MLOps (Bases)', 'Prompt Engineering'] // [cite: 7, 9]
+    }
+  ];
 }

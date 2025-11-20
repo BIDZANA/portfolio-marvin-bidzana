@@ -1,16 +1,35 @@
 <div class="bg-gray-900 text-white min-h-screen p-12 pt-32 flex flex-col items-center">
-  <div class="text-center mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold">Mes Compétences</h1>
-    <p class="text-xl md:text-2xl font-light text-gray-400 mt-2">
-      Les technologies que j'utilise au quotidien.
+  
+  <div class="text-center mb-16 max-w-3xl">
+    <h2 class="text-indigo-400 font-semibold tracking-wide uppercase text-sm mb-2">Expertise Technique</h2>
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">Mes Compétences</h1>
+    <p class="text-lg text-gray-400">
+      Développeur Fullstack polyvalent, je combine une expertise solide en <span class="text-white font-medium">Java/Spring Boot</span> 
+      et <span class="text-white font-medium">Angular</span> avec des compétences modernes en DevOps et IA.
     </p>
   </div>
 
-  <div class="w-full max-w-2xl bg-gray-800 p-8 rounded-xl shadow-xl">
-    <canvas *ngIf="isBrowser" baseChart
-      [options]="radarChartOptions"
-      [type]="radarChartType"
-      [data]="radarChartData">
-    </canvas>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+    
+    <div *ngFor="let category of skillCategories" 
+         class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:bg-gray-750 transition-all duration-300 border border-gray-700 hover:border-indigo-500 group">
+      
+      <div class="flex items-center mb-6">
+        <span class="text-3xl mr-4 bg-gray-900 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
+          {{ category.icon }}
+        </span>
+        <h3 class="text-xl font-bold text-gray-100 group-hover:text-indigo-400 transition-colors">
+          {{ category.name }}
+        </h3>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <span *ngFor="let skill of category.skills" 
+              class="px-3 py-1.5 bg-gray-900 text-gray-300 text-sm font-medium rounded-full border border-gray-700 hover:border-indigo-500 hover:text-white transition-colors cursor-default">
+          {{ skill }}
+        </span>
+      </div>
+    </div>
+
   </div>
 </div>
