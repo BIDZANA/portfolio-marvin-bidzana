@@ -42,7 +42,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-2">Nom complet</label>
           <input type="text" formControlName="from_name" 
-                 class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+                 class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
                  [ngClass]="{'border-red-500': contactForm.get('from_name')?.invalid && contactForm.get('from_name')?.touched}"
                  placeholder="Nom et prénom">
         </div>
@@ -50,7 +50,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
           <input type="email" formControlName="from_email" 
-                 class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+                 class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
                  [ngClass]="{'border-red-500': contactForm.get('from_email')?.invalid && contactForm.get('from_email')?.touched}"
                  placeholder="exemple@email.com">
         </div>
@@ -58,14 +58,14 @@
         <div>
             <label class="block text-sm font-medium text-gray-400 mb-2">Sujet</label>
             <input type="text" formControlName="subject" 
-                   class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+                   class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
                    placeholder="Proposition de projet">
           </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
           <textarea formControlName="message" rows="4" 
-                    class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all resize-none"
+                    class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all resize-none"
                     [ngClass]="{'border-red-500': contactForm.get('message')?.invalid && contactForm.get('message')?.touched}"
                     placeholder="Bonjour Marvin..."></textarea>
         </div>
