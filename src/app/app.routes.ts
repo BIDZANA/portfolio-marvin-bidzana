@@ -7,10 +7,34 @@ import { Contact } from './pages/contact/contact';
 import { Hobbies } from './pages/hobbies/hobbies';
 
 export const routes: Routes = [
-    { path: '', component: Home },
-    { path: 'projets', component: Projects},
-    { path: 'competences', component: Skills },
-    { path: 'about', component: About },
-    { path: 'hobbies', component: Hobbies },
-    { path: 'contact', component: Contact }
+    { 
+        path: '', 
+        component: Home, 
+        data: { animation: 'HomePage' } 
+    },
+    { 
+        path: 'projets', 
+        component: Projects, 
+        data: { animation: 'ProjectsPage' } 
+    },
+    { 
+        path: 'competences', 
+        component: Skills, 
+        data: { animation: 'SkillsPage' } 
+    },
+    { 
+        path: 'about', 
+        component: About, 
+        data: { animation: 'AboutPage' } 
+    },
+    { 
+        path: 'hobbies', 
+        component: Hobbies, 
+        data: { animation: 'HobbiesPage' } 
+    },
+    { 
+        path: 'contact', 
+        component: Contact, 
+        data: { animation: 'ContactPage' } 
+    }
 ];
