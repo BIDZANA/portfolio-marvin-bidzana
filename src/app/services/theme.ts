@@ -1,42 +1,49 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, signal, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private renderer: Renderer2;
-  private themeClass = 'dark';
+  // On utilise un Signal pour gérer l'état (vrai = sombre, faux = clair)
+  darkModeSignal = signal<boolean>(false);
 
-  constructor(private rendererFactory: RendererFactory2) {
-    this.renderer = rendererFactory.createRenderer(null, null);
-    this.initTheme();
-  }
-
-  initTheme() {
-    if (typeof localStorage !== 'undefined') {
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme) {
-        this.renderer.addClass(document.body, storedTheme);
-        this.themeClass = storedTheme;
-      } else {
-        this.renderer.addClass(document.body, this.themeClass);
-        localStorage.setItem('theme', this.themeClass);
-      }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    // Vérification pour éviter les erreurs si tu fais du SSR (Server Side Rendering)
+    if (isPlatformBrowser(this.platformId)) {
+      this.initTheme();
     }
   }
 
-  toggleTheme() {
-    if (this.themeClass === 'dark') {
-      this.renderer.removeClass(document.body, 'dark');
-      this.renderer.addClass(document.body, 'light');
-      this.themeClass = 'light';
+  // Initialisation au démarrage
+  private initTheme() {
+    const storedTheme = localStorage.getItem('theme');
+    
+    if (storedTheme) {
+      // Si une préférence est sauvegardée, on l'utilise
+      this.setDarkMode(storedTheme === 'dark');
     } else {
-      this.renderer.removeClass(document.body, 'light');
-      this.renderer.addClass(document.body, 'dark');
-      this.themeClass = 'dark';
+      // Sinon, on regarde la préférence du système d'exploitation
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.setDarkMode(systemPrefersDark);
     }
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', this.themeClass);
+  }
+
+  // Méthode pour basculer le thème (appelée par le bouton)
+  toggleTheme() {
+    this.setDarkMode(!this.darkModeSignal());
+  }
+
+  // Méthode interne pour appliquer les changements
+  private setDarkMode(isDark: boolean) {
+    this.darkModeSignal.set(isDark);
+
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }
 }
